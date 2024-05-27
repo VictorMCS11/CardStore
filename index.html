@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Palanquin+Dark:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Orbitron" />
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://kit.fontawesome.com/46770b9f59.js" crossorigin="anonymous"></script>
+    <!-- PRECARGA DE IMAGENES -->
+    <!-- <link rel="preload" as="image" href="./assets/img/headerImg1.jpg">
+    <link rel="preload" as="image" href="./assets/img/headerImg2.jpg">
+    <link rel="preload" as="image" href="./assets/img/headerImg3.jpg">
+    <link rel="preload" as="image" href="./assets/img/headerImg4.jpg"> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <title>CardStore</title>
+</head>
+<body>
+    <div id="welcomeModal">
+        <div id="welcomeModalBox">
+            <h1>¡Bienvenido!</h1>
+            <button onclick="closeWelcomeAlert()">cerrar</button>
+        </div>
+    </div>
+    <div id="cashierModal">
+        <div id="cashierModalBox">
+            <h1 id="cashierTitle">¡Pedido realizado!</h1>
+            <p id="cashierMessage1"></p>
+            <p id="cashierMessage2"></p>
+            <button id="closeCashierAlertButton" onclick="closeCashierAlert()">cerrar</button>
+        </div>
+    </div>
+    <div id="modalLightBox">
+        <div id="imageToShow"></div>
+        <button onclick="prevImg()" class="lightBoxButton leftButton"><i class="fa-solid fa-angle-left"></i></button>
+        <button onclick="nextImg()" class="lightBoxButton rightButton"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+    <header class="menu">
+        <div class="menu_container">
+            <div class="menu_logo">
+                <img class="menu_img" src="./assets/img/CardStoreLogo.png" alt="">
+                <h1 class="menu_logo_name">CardStore</h1>
+            </div>
+            <ul class="menu_options">
+                <li class="menu_option"><a href="#index">index</a></li>
+                <li class="menu_option"><a href="#who">quienes somos</a></li>
+                <li class="menu_option sublist_option"><a href="#envelopes">sobres</a>
+                    <ul class="sublist">
+                        <li class="sublist_envelopes"><a href="#envelopes" data-type="pokemon">pokemon</a></li>
+                        <li class="sublist_envelopes"><a href="#envelopes" data-type="yugioh">yu-gi-oh</a></li>
+                        <li class="sublist_envelopes"><a href="#envelopes" data-type="magic">magic</a></li>
+                    </ul>
+                </li>
+                <li class="menu_option"><a href="#galery">galeria</a></li>
+                <li class="menu_option">
+                    <a class="shoppingCart" href="#cashier">
+                        <span class="productsCount"></span>
+                        <div class="count_bg"></div>
+                        <img class="white_cart" src="./assets/img/ShoppingCart.svg" alt="">
+                        <img class="yellow_cart" src="./assets/img/ShoppingCart_yellow.svg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section id="index">
+        <div class="fondosHero" id="fondoHero1" ></div>
+        <div class="fondosHero" id="fondoHero2"></div>
+        <div class="fondosHero" id="fondoHero3"></div>
+        <div class="fondosHero" id="fondoHero4"></div>
+
+        <div class="header_spine">
+            <h1 class="logo_welcome">CardStore</h1>
+            <h3 class="index_welcome">¡Mira todos nuestros nuevos y excitantes sobres de cartas y actualiza tu baraja!</h3>
+        </div>
+    </section>
+    <section id="who">
+        <div class="who_spine">
+            <h2 data-aos="zoom-in">QUIENES SOMOS</h2>
+            <div data-aos="flip-right" class="who_separate_one"></div>
+            <h3 data-aos="zoom-in">¡Somos tu tienda de cartas de confianza! Aquí podras encontrar infinidad de sobres de tus cartas favoritas</h2>
+            <div class="who_separate_two"></div>
+            <div data-aos="fade-up" class="container_video"><video src="./assets/vid/video.mp4" controls></video></div>
+        </div>
+    <section>
+    <section id="envelopes_store">
+        <div id="envelopes" class="envelopes_spine" data-aos="fade-up">
+            <div class="envelopes_options">
+                <h2>SOBRES</h2>
+                <ul class="envelopes_options_buttons">
+                    <button data-type="pokemon" class="button_envelopes no-selected">POKEMON</button>
+                    <button data-type="yugioh" class="button_envelopes no-selected">YU-GI-OH</button>
+                    <button data-type="magic" class="button_envelopes no-selected">MAGIC</button>
+                </ul>
+            </div> 
+
+            <div class="envelopes_cards">
+                <template id="template_cards">
+                    <div class="envelopes_card">
+                        <div class="card_img">
+                            <img src="">
+                        </div>
+                        <h4></h4>
+                        <span></span>
+                        <button class="productButton" data-type data-id >
+                            <img src="./assets/img/ShoppingCart_black.svg">
+                            <p>Añadir</p>
+                        </button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+    <section id="galery">
+        <div class="galery_spine">
+            <h2 data-aos="zoom-in">GALERIA</h2>
+            <div data-aos="flip-right" class="galery_separate_one"></div>
+            <div data-aos="fade-up" class="container_galery">
+                <div class="picture"><img class="contentPicture" src="./assets/img/store1.jpg" alt="caja de la tienda"></div>
+                <div class="picture"><img class="contentPicture" src="./assets/img/store2.jpg" alt="sección de cartas en la tienda"></div>
+                <div class="picture"><img class="contentPicture" src="./assets/img/store3.jpg" alt="torneo de cartas de pokemon"></div>
+                <div class="picture"><img class="contentPicture" src="./assets/img/store4.jpg" alt="sección de cartas en la tienda"></div>
+                <div class="picture"><img class="contentPicture" src="./assets/img/store5.jpg" alt="sección de cartasd e pokemon en la tienda"></div>
+                <div class="picture"><img class="contentPicture" src="./assets/img/store6.jpg" alt="caja de la tienda"></div>
+            </div>
+        </div>
+    </section>
+    <section id="cashier">
+        <div class="cashier_spine">
+            <h2 data-aos="zoom-in">PEDIDO</h2>
+            <div data-aos="flip-right" class="cashier_separate_one"></div>
+            <div data-aos="fade-up" class="cashier_container">
+                <div class="shoppingCart_container">
+                    <h3 class="no-products">No tienes productos en el carrito de compra 🛒🥲</h3>
+                    <template id="shoppingCartTemplate">
+                        <div class="productCard">
+                            <img src="./assets/img/magic_evelope1.png">
+                            <div class="productInfo">
+                                <h5>Product name</h5>
+                                <div class="productCant">
+                                    <span>Cant: </span>
+                                    <span class="productAmount">3</span>
+                                    <img src="./assets/img/plus.svg" data-id class="productPlus"></img>
+                                    <img src="./assets/img/subtract.svg" data-id class="productLess"></img>
+                                    <strong class="productDolars">$$$</strong>
+                                </div>
+                            </div>
+                            <div class="totalAll">
+                                <span class="textTotal">Total :</span>
+                                <span class="textTotalValue">0</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <form class="form_cashier">
+                    <input class="cashier_textInput" name="name" type="text" placeholder="Nombre" value="" />
+                    <input class="cashier_textInput" name="email" type="text" placeholder="Email" value="" />
+                    <input class="cashier_textInput" name="address" type="text" placeholder="Dirección" value="" />
+                    <input class="cashier_textInput" name="number" type="text" placeholder="Teléfono" value="" />
+                    <input class="cashier_checkboxInput" type="checkbox" required /><p>Aceptos términos de uso</p>
+                    <input class="cashier_buttonInput" type="submit" value="Comprar" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>Victor Manuel</p>
+        <p>VictorMCS11@gmail.com</p>
+    </footer>
+    <script src="./js/script.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="./js/scriptShoppingCart.js"></script>
+</body>
+</html>
