@@ -123,6 +123,8 @@ const cards = document.querySelector(".envelopes_cards");
 const sublistEnvelopes = document.querySelectorAll(".sublist_envelopes");
 const evelopeButtons = document.querySelectorAll(".button_envelopes");
 
+const sublistOpenMenuEnvelopes = document.querySelectorAll(".sublist_open_envelopes");
+
 let envelopeSelected = "pokemon";
 
 evelopeButtons.forEach(button =>{
@@ -138,6 +140,18 @@ evelopeButtons.forEach(button =>{
 })
 
 sublistEnvelopes.forEach(button =>{
+    button.addEventListener('click', e =>{
+        if(envelopeSelected === e.target.dataset.type){
+            return
+        }
+        cards.textContent = ""
+        envelopeSelected = e.target.dataset.type
+
+        changeEnvelopes(envelopeSelected);
+    })
+})
+
+sublistOpenMenuEnvelopes.forEach(button =>{
     button.addEventListener('click', e =>{
         if(envelopeSelected === e.target.dataset.type){
             return

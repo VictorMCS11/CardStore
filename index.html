@@ -56,7 +56,7 @@
                     </ul>
                 </li>
                 <li class="menu_option"><a href="#galery">galeria</a></li>
-                <li class="menu_option">
+                <li class="menu_option_cart">
                     <a class="shoppingCart" href="#cashier">
                         <span class="productsCount"></span>
                         <div class="count_bg"></div>
@@ -64,8 +64,27 @@
                         <img class="yellow_cart" src="./assets/img/ShoppingCart_yellow.svg" alt="">
                     </a>
                 </li>
+                <label for="menu_button" class="menu_button">
+                    <img class="white_burguer" src="./assets/img/menu_burguer.svg" alt="">
+                    <img class="yellow_burguer" src="./assets/img/menu_burguer_yellow.svg" alt="">
+                    <img class="white_close" src="./assets/img/menu_close.svg" alt="">
+                    <img class="yellow_close" src="./assets/img/menu_close_yellow.svg" alt="">
+                </label>
+                <input type="checkbox" id="menu_button" onchange="openMenu()" hidden>
             </ul>
         </div>
+        <ul class="menu_open_options">
+            <li class="menu_open_option"><a href="#index">index</a></li>
+            <li class="menu_open_option"><a href="#who">quienes somos</a></li>
+            <li class="menu_open_option sublist_open_option"><a>sobres</a>
+                <ul class="sublist_open">
+                    <li class="sublist_open_envelopes"><a href="#envelopes" data-type="pokemon">pokemon</a></li>
+                    <li class="sublist_open_envelopes"><a href="#envelopes" data-type="yugioh">yu-gi-oh</a></li>
+                    <li class="sublist_open_envelopes"><a href="#envelopes" data-type="magic">magic</a></li>
+                </ul>
+            </li>
+            <li class="menu_open_option"><a href="#galery">galeria</a></li>
+        </ul>
     </header>
     <section id="index">
         <div class="fondosHero" id="fondoHero1" ></div>

@@ -13,6 +13,48 @@
 // }
 // welcomeAlert()
 
+//Menu burguer para móbil
+const openMenu = () =>{
+    const checked = document.getElementById('menu_button').checked
+    const white_burguer = document.querySelector('.white_burguer')
+    const yellow_burguer = document.querySelector('.yellow_burguer')
+    const white_close = document.querySelector('.white_close')
+    const yellow_close = document.querySelector('.yellow_close')
+    const menu_options = document.querySelector('.menu_open_options')
+    if(checked){
+        white_burguer.style.display = "none"
+        yellow_burguer.style.display = "none"
+        white_close.style.display = "block"
+        yellow_close.style.display = "block"
+        menu_options.style.display = "flex"
+        document.querySelector('.sublist_open').style.display = "none"
+        let options1 = Array.from(document.querySelectorAll('.menu_open_option'))
+        let options2 = Array.from(document.querySelectorAll('.sublist_open_envelopes'))
+        let options = [...options1, ...options2]
+        // options = options.filter(option => !option.classList.contains("sublist_open_option"))
+        options.forEach(option =>{
+            option.addEventListener('click', () =>{
+                if(option.classList.contains("sublist_open_option")){
+                    if(document.querySelector('.sublist_open').style.display === "none"){
+                        document.querySelector('.sublist_open').style.display = "block"
+                        return
+                    }else{
+                        document.querySelector('.sublist_open').style.display = "none"
+                        return
+                    }
+                }
+                document.getElementById('menu_button').checked = false
+                openMenu()
+            })
+        })
+    }else{
+        white_burguer.style.display = "block"
+        yellow_burguer.style.display = "block"
+        white_close.style.display = "none"
+        yellow_close.style.display = "none"
+        menu_options.style.display = "none"
+    }
+}
 //Aquí empieza el carrusel automático
 let headerBgCounter = 1;
 const slideShow = () =>{
@@ -89,12 +131,16 @@ let actualScrollPos = document.documentElement.scrollTop;
 if(actualScrollPos === 0){
     document.querySelector(".shoppingCart").style.boxShadow = "0 0 0 0px rgb(0, 0, 0)";
     document.querySelector(".shoppingCart").style.backgroundColor = "rgba(0, 0, 0, 0)";
+    document.querySelector(".menu_button").style.boxShadow = "0 0 0 0px rgb(0, 0, 0)";
+    document.querySelector(".menu_button").style.backgroundColor = "rgba(0, 0, 0, 0)";
     document.querySelector(".menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
     document.querySelector(".menu_container").style.maxWidth = "1001px";
     document.querySelector(".sublist").style.backgroundColor = "rgba(0, 0, 0, 0)";
 }else{
     document.querySelector(".shoppingCart").style.boxShadow = "0 0 0 10px rgb(0, 0, 0)";
     document.querySelector(".shoppingCart").style.backgroundColor = "rgba(0, 0, 0, 1)";
+    document.querySelector(".menu_button").style.boxShadow = "0 0 0 10px rgb(0, 0, 0)";
+    document.querySelector(".menu_button").style.backgroundColor = "rgba(0, 0, 0, 1)";
     document.querySelector(".menu").style.backgroundColor = "rgba(0, 0, 0, 1)";
     document.querySelector(".menu_container").style.maxWidth = "1920px";
     document.querySelector(".sublist").style.backgroundColor = "rgba(0, 0, 0, 1)";
@@ -104,21 +150,27 @@ window.addEventListener('scroll', () =>{
     if(actualScrollPos < newScrollPos && newScrollPos > 0){
         actualScrollPos = newScrollPos;
         document.querySelector(".shoppingCart").style.marginTop = "65px";
+        document.querySelector(".menu_button").style.marginTop = "157px";
         document.querySelector(".menu").style.marginTop = "-80px";
     }else if(actualScrollPos > newScrollPos && newScrollPos > 0){
         actualScrollPos = newScrollPos;
         document.querySelector(".shoppingCart").style.marginTop = "-15px";
+        document.querySelector(".menu_button").style.marginTop = "0";
         document.querySelector(".menu").style.marginTop = "0";
     }
     if(newScrollPos === 0){
         document.querySelector(".shoppingCart").style.boxShadow = "0 0 0 0px rgb(0, 0, 0)";
         document.querySelector(".shoppingCart").style.backgroundColor = "rgba(0, 0, 0, 0)";
+        document.querySelector(".menu_button").style.boxShadow = "0 0 0 0px rgb(0, 0, 0)";
+        document.querySelector(".menu_button").style.backgroundColor = "rgba(0, 0, 0, 0)";
         document.querySelector(".menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
         document.querySelector(".menu_container").style.maxWidth = "1001px";
         document.querySelector(".sublist").style.backgroundColor = "rgba(0, 0, 0, 0)";
     }else{
         document.querySelector(".shoppingCart").style.boxShadow = "0 0 0 10px rgb(0, 0, 0)";
         document.querySelector(".shoppingCart").style.backgroundColor = "rgba(0, 0, 0, 1)";
+        document.querySelector(".menu_button").style.boxShadow = "0 0 0 10px rgb(0, 0, 0)";
+        document.querySelector(".menu_button").style.backgroundColor = "rgba(0, 0, 0, 1)";
         document.querySelector(".menu").style.backgroundColor = "rgba(0, 0, 0, 1)";
         document.querySelector(".menu_container").style.maxWidth = "1920px";
         document.querySelector(".sublist").style.backgroundColor = "rgba(0, 0, 0, 1)";
