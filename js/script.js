@@ -13,48 +13,82 @@
 // }
 // welcomeAlert()
 
-//Menu burguer para móbil
-const openMenu = () =>{
-    const checked = document.getElementById('menu_button').checked
-    const white_burguer = document.querySelector('.white_burguer')
-    const yellow_burguer = document.querySelector('.yellow_burguer')
-    const white_close = document.querySelector('.white_close')
-    const yellow_close = document.querySelector('.yellow_close')
-    const menu_options = document.querySelector('.menu_open_options')
-    if(checked){
-        white_burguer.style.display = "none"
-        yellow_burguer.style.display = "none"
-        white_close.style.display = "block"
-        yellow_close.style.display = "block"
-        menu_options.style.display = "flex"
-        document.querySelector('.sublist_open').style.display = "none"
-        let options1 = Array.from(document.querySelectorAll('.menu_open_option'))
-        let options2 = Array.from(document.querySelectorAll('.sublist_open_envelopes'))
-        let options = [...options1, ...options2]
-        // options = options.filter(option => !option.classList.contains("sublist_open_option"))
-        options.forEach(option =>{
-            option.addEventListener('click', () =>{
-                if(option.classList.contains("sublist_open_option")){
-                    if(document.querySelector('.sublist_open').style.display === "none"){
-                        document.querySelector('.sublist_open').style.display = "block"
-                        return
-                    }else{
-                        document.querySelector('.sublist_open').style.display = "none"
-                        return
-                    }
-                }
-                document.getElementById('menu_button').checked = false
-                openMenu()
-            })
-        })
-    }else{
-        white_burguer.style.display = "block"
-        yellow_burguer.style.display = "block"
-        white_close.style.display = "none"
-        yellow_close.style.display = "none"
-        menu_options.style.display = "none"
+// Menu Burguer para móvil
+const toggleMenu = () => {
+    const menuButton = document.getElementById('menu_button');
+    const menuOptions = document.querySelector('.menu_open_options');
+    const icons = {
+        whiteBurguer: document.querySelector('.white_burguer'),
+        yellowBurguer: document.querySelector('.yellow_burguer'),
+        whiteClose: document.querySelector('.white_close'),
+        yellowClose: document.querySelector('.yellow_close')
+    };
+
+    if (menuButton.checked) {
+        // Mostrar íconos de cierre y opciones de menú
+        icons.whiteBurguer.style.display = "none";
+        icons.yellowBurguer.style.display = "none";
+        icons.whiteClose.style.display = "block";
+        icons.yellowClose.style.display = "block";
+        menuOptions.style.display = "flex";
+    } else {
+        // Restaurar íconos de hamburguesa y ocultar opciones
+        icons.whiteBurguer.style.display = "block";
+        icons.yellowBurguer.style.display = "block";
+        icons.whiteClose.style.display = "none";
+        icons.yellowClose.style.display = "none";
+        menuOptions.style.display = "none";
     }
-}
+};
+
+// Menu Burguer para móvil
+const toggleSubmenu = () => {
+    const sublist = document.querySelector('.sublist_open');
+    const submenuOption = document.querySelector('.sublist_open_option');
+
+    if (sublist.style.display === "none" || !sublist.style.display) {
+        sublist.style.display = "block";
+        submenuOption.style.backgroundColor = "var(--primary-color)"
+    } else {
+        sublist.style.display = "none";
+        submenuOption.style.backgroundColor = "white"
+    }
+};
+
+const closeMenuOnClick = () => {
+    const menuButton = document.getElementById('menu_button');
+    let menuLinks = Array.from(document.querySelectorAll('.menu_open_options a')); // Seleccionar todos los enlaces
+    // menuLinks = menuLinks.filter(link => !link.classList.contains("sublist_open_a"))
+    console.log(menuLinks)
+    menuLinks.forEach(link => {
+        if(!link.classList.contains("sublist_open_a")){
+            link.addEventListener('click', () => {
+                menuButton.checked = false; // Desmarcar el botón del menú
+                toggleMenu(); // Actualizar el estado del menú
+            });
+        }else{
+
+        }
+    });
+};
+
+const setupMenu = () => {
+    // Inicializar eventos
+    const menuButton = document.getElementById('menu_button');
+    const submenuOption = document.querySelector('.sublist_open_option');
+
+    menuButton.addEventListener('change', toggleMenu);
+    submenuOption.addEventListener('click', toggleSubmenu);
+
+    closeMenuOnClick(); // Cerrar menú al hacer clic en cualquier enlace
+
+    // Inicializar estado del menú
+    document.querySelector('.menu_open_options').style.display = "none";
+    document.querySelector('.sublist_open').style.display = "none";
+};
+
+document.addEventListener('DOMContentLoaded', setupMenu);
+
 //Aquí empieza el carrusel automático
 let headerBgCounter = 1;
 const slideShow = () =>{
@@ -198,26 +232,28 @@ const selectEnvelopes = (section, background, text) =>{
     document.querySelector(`.${text}`).classList.add("textSelected")
 }
 
+
 //LIGHTBOX
 let srcList = []
 let numberImg = 0;
-
+// Abre el lightbox
 const modelLightBox = () =>{
     document.getElementById("modalLightBox").style.display = "block";
     document.body.style.overflowY = "hidden";
 
     document.getElementById("imageToShow").innerHTML = `<img src='${srcList[numberImg]}'>`
-
-    const closeLightBox = () =>{
-        window.addEventListener('click', e =>{
-            if(!e.target.matches("img") && !e.target.matches(".lightBoxButton") && !e.target.matches("i")){
-                document.getElementById("modalLightBox").style.display = "none"
-                document.body.style.overflowY = "auto";
-            }
-        })
-    }
-    closeLightBox()
 }
+// Cierra el lightbox
+const closeLightBox = (e) => {
+    const modal = document.getElementById("modalLightBox");
+    if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.style.overflowY = "auto";
+    }
+};
+// Escucha de eventos
+window.addEventListener("click", closeLightBox);
+window.addEventListener("touchstart", closeLightBox);
 
 const readyLightBox = () =>{
     let listImg = document.querySelectorAll(".contentPicture");
